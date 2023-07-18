@@ -140,8 +140,77 @@ declare module "libass-wasm" {
 
   export type Options = OptionsWithSubUrl | OptionsWithSubContent;
 
+  export interface LibassStyle {
+    Name: string;
+    FontName: string;
+    FontSize: number;
+    PrimaryColour: number;
+    SecondaryColour: number;
+    OutlineColour: number;
+    BackColour: number;
+    Bold: number;
+    Italic: number;
+    Underline: number;
+    StrikeOut: number;
+    ScaleX: number;
+    ScaleY: number;
+    Spacing: number;
+    Angle: number;
+    BorderStyle: number;
+    Outline: number;
+    Shadow: number;
+    Alignment: number;
+    MarginL: number;
+    MarginR: number;
+    MarginV: number;
+    Encoding: number;
+    treat_fontname_as_pattern: number;
+    Blur: number;
+    Justify: number;
+    _index: number;
+  }
+
+  export interface LibassEvent {
+    Start: number;
+    Duration: number;
+    Style: string;
+    Name: string;
+    MarginL: number;
+    MarginR: number;
+    MarginV: number;
+    Effect: string;
+    Text: string;
+    ReadOrder: number;
+    Layer: number;
+    _index: number;
+  }
+
   class SubtitlesOctopus {
     constructor(options: Options);
+
+    /**
+     * Resize the canvas to given parameters. Auto-generated if values are omitted.
+     * @param width width=0
+     * @param height height=0
+     * @param top top=0
+     * @param left left=0
+     */
+    resize(width: number, height: number, top: number, left: number): void;
+
+    /** Sets a new ASS style directly. */
+    setStyle(style: Partial<LibassStyle>, index: number): void;
+
+    /**  Remove the style with the specified index. */
+    removeStyle(index: number): void;
+
+    /** Creates a new ASS event directly. */
+    createEvent(event: Partial<LibassEvent>): void;
+
+    /** Overwrite the data of the event with the specified index. */
+    setEvent(event: Partial<LibassEvent>, index: number): void;
+
+    /** Remove the event with the specified index. */
+    removeEvent(index: number): void;
 
     /**
      * Render subtitles at specified time
