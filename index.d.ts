@@ -197,6 +197,9 @@ declare module "libass-wasm" {
      */
     resize(width: number, height: number, top: number, left: number): void;
 
+    /** Creates a new ASS style directly. */
+    createStyle(style: Partial<LibassStyle>): void;
+
     /** Sets a new ASS style directly. */
     setStyle(style: Partial<LibassStyle>, index: number): void;
 
@@ -211,6 +214,13 @@ declare module "libass-wasm" {
 
     /** Remove the event with the specified index. */
     removeEvent(index: number): void;
+
+    /**
+     * Sets the renderer as paused
+     * @param isPaused
+     * @param currentTime
+     */
+    setIsPaused(isPaused: boolean, currentTime: number): void;
 
     /**
      * Render subtitles at specified time
