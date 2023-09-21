@@ -64,7 +64,7 @@ declare module "libass-wasm" {
      * Function called in case of critical error meaning the subtitles wouldn't be shown
      * and you should use an alternative method (for instance it occurs if browser doesn't support web workers)
      */
-    onError?: () => void;
+    onError?: (e: ErrorEvent) => void;
 
     /**
      * Rendering mode. (If not set, the deprecated option lossyRender is evaluated)
